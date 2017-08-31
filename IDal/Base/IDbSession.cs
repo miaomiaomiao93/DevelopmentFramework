@@ -10,10 +10,9 @@ namespace IDal
     public interface IDbSession
     {
         DbContext entity { get; }
-        /// <summary>
-        /// 范例
-        /// </summary>
-        //IProductAdminDal ProductDal { get; set; }       
+        IUserAdminDal UserDal { get; set; }
+        IAuthorityAdminDal AuthorityDal { get; set; }
+        IRoleAdminDal RoleDal { get; set; }
         int ExcuteSql(string sql, object[] parameters);
         bool SaveChanges();
     }

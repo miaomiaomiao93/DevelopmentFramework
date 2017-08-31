@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Configuration;
+using IDal;
 
 namespace Session
 {
-    public class DalFactory
-    {
         /// <summary>
         ///抽象工厂
         /// </summary>
@@ -40,6 +39,29 @@ namespace Session
             //        return scope.Resolve<IProductAdminDal>();
             //    }
             //}
+
+            public static IAuthorityAdminDal CreateAuthorityDal()
+            {
+                using(var scope=container.BeginLifetimeScope())
+                {
+                    return scope.Resolve<IAuthorityAdminDal>();
+                }
+            }
+
+            public static IUserAdminDal CreateUserDal()
+            {
+                using (var scope=container.BeginLifetimeScope())
+                {
+                    return scope.Resolve<IUserAdminDal>();
+                }
+            }
+            public static IRoleAdminDal CreateRoleDal()
+            {
+                using (var scope = container.BeginLifetimeScope())
+                {
+                    return scope.Resolve<IRoleAdminDal>();
+                }
+            }
         }
     }
-}
+

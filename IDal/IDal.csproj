@@ -46,8 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\IAuthorityAdminDal.cs" />
+    <Compile Include="Admin\IRoleAdminDal.cs" />
+    <Compile Include="Admin\IUserAdminDal.cs" />
+    <Compile Include="Base\IAuthorityDal.cs" />
     <Compile Include="Base\IBaseDal.cs" />
     <Compile Include="Base\IDbSession.cs" />
+    <Compile Include="Base\IRoleDal.cs" />
+    <Compile Include="Base\IUserDal.cs" />
     <Compile Include="T4\Configuration.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,9 +87,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Admin\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{c639402f-2ef2-4a7d-8f75-61c85402d063}</Project>

@@ -35,6 +35,46 @@ namespace Session
         //    }
         //    set { _ProductDal = value; }
         //}
+        private IUserAdminDal _UserDal;
+        public IUserAdminDal UserDal
+        {
+            get
+            {
+                if (_UserDal == null)
+                {
+                    _UserDal = DalFactory.CreateUserDal();
+                }
+                return _UserDal;
+            }
+            set { _UserDal = value; }
+        }
+        private IAuthorityAdminDal _AuthorityDal;
+        public IAuthorityAdminDal AuthorityDal
+        {
+            get
+            {
+                if (_AuthorityDal == null)
+                {
+                    _AuthorityDal = DalFactory.CreateAuthorityDal();
+                }
+                return _AuthorityDal;
+            }
+            set { _AuthorityDal = value; }
+        }
+
+        public IRoleAdminDal _RoleDal;
+        public IRoleAdminDal RoleDal
+        {
+            get
+            {
+                if(_RoleDal==null)
+                {
+                    _RoleDal = DalFactory.CreateRoleDal();
+                }
+                return _RoleDal;
+            }
+            set { _RoleDal = value; }
+        }
         /// <summary>
         /// 执行Sql
         /// </summary>

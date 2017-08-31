@@ -66,3 +66,16 @@ C:\Users\hihi_zh\Desktop\BVM\Model\bin\Debug\zh-Hans\EntityFramework.resources.d
 C:\Users\hihi_zh\Desktop\BVM\Model\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 C:\Users\hihi_zh\Desktop\BVM\Model\obj\Debug\Model.dll
 C:\Users\hihi_zh\Desktop\BVM\Model\obj\Debug\Model.pdb
+G:\Git\DevelopmentFramework\Model\bin\Debug\Model.dll.config
+G:\Git\DevelopmentFramework\Model\bin\Debug\Model.dll
+G:\Git\DevelopmentFramework\Model\bin\Debug\Model.pdb
+G:\Git\DevelopmentFramework\Model\bin\Debug\EntityFramework.dll
+G:\Git\DevelopmentFramework\Model\bin\Debug\EntityFramework.SqlServer.dll
+G:\Git\DevelopmentFramework\Model\bin\Debug\Newtonsoft.Json.dll
+G:\Git\DevelopmentFramework\Model\bin\Debug\EntityFramework.xml
+G:\Git\DevelopmentFramework\Model\bin\Debug\EntityFramework.SqlServer.xml
+G:\Git\DevelopmentFramework\Model\bin\Debug\Newtonsoft.Json.xml
+G:\Git\DevelopmentFramework\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\Git\DevelopmentFramework\Model\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\Git\DevelopmentFramework\Model\obj\Debug\Model.dll
+G:\Git\DevelopmentFramework\Model\obj\Debug\Model.pdb

@@ -18,18 +18,17 @@ namespace Model
             Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, ReportingDbMigrationsConfiguration>());
         }
 
-        //范例
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<Sale> Sales { get; set; }
+        public DbSet<UserModel> UserDalModals { get; set; }
+        public DbSet<AuthorityModel> AuthorityModels { get; set; }
+        public DbSet<RoleModel> RoleModels { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); //生成数据库时表名为类名，不是上面带s的名字  //移除复数表名的契约
             modelBuilder.Conventions.Remove<IncludeMetadataConvention>();     //不创建EdmMetadata表  //防止黑幕交易 要不然每次都要访问 EdmMetadata这个表
-
-            //范例
-            //modelBuilder.Configurations.Add(new ProductMap());
-            //modelBuilder.Configurations.Add(new SaleMap());
+            modelBuilder.Configurations.Add(new AuthorityModelMap());
+            modelBuilder.Configurations.Add(new RoleModelMap());
+            modelBuilder.Configurations.Add(new UserModelMap());
         }
 
         internal sealed class ReportingDbMigrationsConfiguration : System.Data.Entity.Migrations.DbMigrationsConfiguration<MyContext>

@@ -52,8 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AuthorityAdminDal.cs" />
+    <Compile Include="Admin\RoleAdminDal.cs" />
+    <Compile Include="Admin\UserAdminDal.cs" />
+    <Compile Include="Base\AuthorityDal.cs" />
     <Compile Include="Base\BaseDal.cs" />
     <Compile Include="Base\DbContextOnly.cs" />
+    <Compile Include="Base\RoleDal.cs" />
+    <Compile Include="Base\UserDal.cs" />
     <Compile Include="T4\Configuration.cs">
       <DependentUpon>Configuration.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -97,9 +103,7 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Admin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -40,7 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\IAuthorityAdminService.cs" />
+    <Compile Include="Admin\IRoleAdminService.cs" />
+    <Compile Include="Admin\IUserAdminService.cs" />
+    <Compile Include="Base\IAuthorityService.cs" />
     <Compile Include="Base\IBaseService.cs" />
+    <Compile Include="Base\IRoleService.cs" />
+    <Compile Include="Base\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4\Configuration.cs">
       <AutoGen>True</AutoGen>
@@ -86,9 +92,7 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Admin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

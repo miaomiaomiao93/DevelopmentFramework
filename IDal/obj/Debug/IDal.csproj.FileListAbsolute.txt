@@ -160,3 +160,17 @@ C:\Users\hihi_zh\Desktop\BVM\IDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.re
 C:\Users\hihi_zh\Desktop\BVM\IDal\obj\Debug\IDal.csprojResolveAssemblyReference.cache
 C:\Users\hihi_zh\Desktop\BVM\IDal\obj\Debug\IDal.dll
 C:\Users\hihi_zh\Desktop\BVM\IDal\obj\Debug\IDal.pdb
+G:\Git\DevelopmentFramework\IDal\bin\Debug\IDal.dll.config
+G:\Git\DevelopmentFramework\IDal\bin\Debug\IDal.dll
+G:\Git\DevelopmentFramework\IDal\bin\Debug\IDal.pdb
+G:\Git\DevelopmentFramework\IDal\bin\Debug\EntityFramework.dll
+G:\Git\DevelopmentFramework\IDal\bin\Debug\EntityFramework.SqlServer.dll
+G:\Git\DevelopmentFramework\IDal\bin\Debug\Model.dll
+G:\Git\DevelopmentFramework\IDal\bin\Debug\Model.pdb
+G:\Git\DevelopmentFramework\IDal\bin\Debug\EntityFramework.xml
+G:\Git\DevelopmentFramework\IDal\bin\Debug\EntityFramework.SqlServer.xml
+G:\Git\DevelopmentFramework\IDal\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\Git\DevelopmentFramework\IDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\Git\DevelopmentFramework\IDal\obj\Debug\IDal.csprojResolveAssemblyReference.cache
+G:\Git\DevelopmentFramework\IDal\obj\Debug\IDal.dll
+G:\Git\DevelopmentFramework\IDal\obj\Debug\IDal.pdb
