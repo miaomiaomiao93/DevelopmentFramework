@@ -26,6 +26,13 @@ namespace UI
     {
         protected void Application_Start()
         {
+            AreaRegistration.RegisterAllAreas();
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             #region Autofac在MVC中注册
             ContainerBuilder builder = new ContainerBuilder();
             var service = Assembly.Load("IService");
@@ -38,20 +45,7 @@ namespace UI
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             #endregion
 
-
-
-
-
             //log4net.Config.XmlConfigurator.Configure();//读取Log4Net配置信息
-
-            AreaRegistration.RegisterAllAreas();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-    
 
             //MiniProfilerEF6.Initialize();//注册MiniProfiler，网页性能插件
 

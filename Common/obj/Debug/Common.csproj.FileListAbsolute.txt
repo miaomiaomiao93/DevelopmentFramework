@@ -148,3 +148,17 @@ C:\Users\hihi_zh\Desktop\BVM\Common\bin\Debug\zh-Hans\EntityFramework.resources.
 C:\Users\hihi_zh\Desktop\BVM\Common\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 C:\Users\hihi_zh\Desktop\BVM\Common\obj\Debug\Common.dll
 C:\Users\hihi_zh\Desktop\BVM\Common\obj\Debug\Common.pdb
+G:\Git\DevelopmentFramework\Common\bin\Debug\Common.dll.config
+G:\Git\DevelopmentFramework\Common\bin\Debug\Common.dll
+G:\Git\DevelopmentFramework\Common\bin\Debug\Common.pdb
+G:\Git\DevelopmentFramework\Common\bin\Debug\EntityFramework.dll
+G:\Git\DevelopmentFramework\Common\bin\Debug\EntityFramework.SqlServer.dll
+G:\Git\DevelopmentFramework\Common\bin\Debug\log4net.dll
+G:\Git\DevelopmentFramework\Common\bin\Debug\Newtonsoft.Json.dll
+G:\Git\DevelopmentFramework\Common\bin\Debug\EntityFramework.xml
+G:\Git\DevelopmentFramework\Common\bin\Debug\EntityFramework.SqlServer.xml
+G:\Git\DevelopmentFramework\Common\bin\Debug\Newtonsoft.Json.xml
+G:\Git\DevelopmentFramework\Common\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\Git\DevelopmentFramework\Common\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\Git\DevelopmentFramework\Common\obj\Debug\Common.dll
+G:\Git\DevelopmentFramework\Common\obj\Debug\Common.pdb

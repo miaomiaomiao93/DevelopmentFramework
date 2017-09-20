@@ -2,7 +2,7 @@
 using Common;
 using IService;
 using Model;
-using Model.Base.Entities;
+using Model;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -24,9 +24,8 @@ namespace API.Controllers
     {
         #region 初始化
         private IUserAdminService _userService { get; set; }
-        private IUserDataAdminService _userDataService { get; set; }
-        private ILevelAdminService _levelService { get; set; }
-        private IUserUpFileAdminService _userUpFileService { get; set; }
+        private IAuthorityAdminService _authorityService { get; set; }
+        private IRoleAdminService _roleadminService { get; set; }
         public IUserAdminService UserService
         {
             get
@@ -39,40 +38,28 @@ namespace API.Controllers
             }
         }
 
-        public IUserDataAdminService UserDataService
+        public IAuthorityAdminService AuthorityService
         {
             get
             {
-                if (_userDataService == null)
+                if (_userService == null)
                 {
-                    return new UserDataAdminService();
+                    return new AuthorityAdminService();
                 }
-                return _userDataService;
-            }
-        }
-
-        public ILevelService LevelService
-        {
-            get
-            {
-                if (_userDataService == null)
-                {
-                    return new LevelAdminService();
-                }
-                return _levelService;
+                return _authorityService;
             }
         }
 
 
-        public IUserUpFileAdminService UserUpFileAdminService
+        public IRoleAdminService RoleService
         {
             get
             {
-                if (_userUpFileService == null)
+                if (_roleadminService == null)
                 {
-                    return new UserUpFileAdminService();
+                    return new RoleAdminService();
                 }
-                return _userUpFileService;
+                return _roleadminService;
             }
         }
         #endregion
@@ -91,6 +78,7 @@ namespace API.Controllers
         public JsonNetResult LogIn(string nickName, string pwd)
         {
             string pwdMd5 = EncryptionHelper.GetMd5Str(pwd);
+            
             var user = UserService.GetList(t => t.NickName == nickName && t.Pwd == pwdMd5 && t.State == 1).Select(t => new { t.Id, t.NickName, t.Count }).FirstOrDefault();
             if (user == null)
             {
@@ -112,10 +100,12 @@ namespace API.Controllers
         [HttpGet]
         public JsonNetResult GetRegCode(string email)
         {
+            //正则判断
             if (!RegularHelper.IsEmail(email))//判断邮箱格式是否正确
             {
                 return JsonNetResult(ResultStatus.EmailErr);
             }
+            //账户状态判断
             var user = this.UserService.GetList(t => t.EMail == email && t.State > 0).FirstOrDefault();//禁用账户的邮箱不能注册
             if (user != null)//判断邮箱是否存在
             {
@@ -137,69 +127,69 @@ namespace API.Controllers
         }
 
 
-        /// <summary>
-        /// 用户注册并创建文件夹
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="email"></param>
-        /// <param name="code"></param>
-        /// <param name="pwd"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public JsonNetResult RegUser(string nickName, string email, string code, string pwd)
-        {
-            if (!RegularHelper.IsLetter(nickName))
-            {
-                return JsonNetResult(ResultStatus.NameErr);
-            }
-            if (!RegularHelper.IsEmail(email))
-            {
-                return JsonNetResult(ResultStatus.EmailErr);
-            }
-            FolderTree tree = new FolderTree() { Name = "", Children = new List<FolderTree>() { new FolderTree() { Name = "Synchro" }, new FolderTree() { Name = "FuncT", Children = new List<FolderTree>() { new FolderTree() { Name = "Resource" }, new FolderTree() { Name = "Audit", Children = new List<FolderTree>() { new FolderTree() { Name = "Pend" }, new FolderTree() { Name = "Audited" } } } } } } };
+        ///// <summary>
+        ///// 用户注册并创建文件夹
+        ///// </summary>
+        ///// <param name="userName"></param>
+        ///// <param name="email"></param>
+        ///// <param name="code"></param>
+        ///// <param name="pwd"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public JsonNetResult RegUser(string nickName, string email, string code, string pwd)
+        //{
+        //    if (!RegularHelper.IsLetter(nickName))
+        //    {
+        //        return JsonNetResult(ResultStatus.NameErr);
+        //    }
+        //    if (!RegularHelper.IsEmail(email))
+        //    {
+        //        return JsonNetResult(ResultStatus.EmailErr);
+        //    }
+        //    FolderTree tree = new FolderTree() { Name = "", Children = new List<FolderTree>() { new FolderTree() { Name = "Synchro" }, new FolderTree() { Name = "FuncT", Children = new List<FolderTree>() { new FolderTree() { Name = "Resource" }, new FolderTree() { Name = "Audit", Children = new List<FolderTree>() { new FolderTree() { Name = "Pend" }, new FolderTree() { Name = "Audited" } } } } } } };
 
-            if (CacheHelper.Get("EMail") == null || (CacheHelper.Get("EMail").ToString() != email))//判断用户发送验证码和注册用的是同一个邮箱
-            {
-                return JsonNetResult(ResultStatus.EmailErr);
-            }
+        //    if (CacheHelper.Get("EMail") == null || (CacheHelper.Get("EMail").ToString() != email))//判断用户发送验证码和注册用的是同一个邮箱
+        //    {
+        //        return JsonNetResult(ResultStatus.EmailErr);
+        //    }
 
-            var user = this.UserService.GetList(t => t.NickName == nickName).FirstOrDefault();
-            if (user != null)//判断注册的用户名是否存在
-            {
-                return JsonNetResult(ResultStatus.NameExist);
-            }
+        //    var user = this.UserService.GetList(t => t.NickName == nickName).FirstOrDefault();
+        //    if (user != null)//判断注册的用户名是否存在
+        //    {
+        //        return JsonNetResult(ResultStatus.NameExist);
+        //    }
 
-            if (CacheHelper.Get("RegCode") != null)
-            {
-                if (string.Compare(CacheHelper.Get("RegCode").ToString(), code, true) == 0)//判断验证码是否正确(忽略大小写)
-                {
-                    var regUser = this.UserService.Add(new UserModel() { EMail = email, Pwd = EncryptionHelper.GetMd5Str(pwd), UName = "", BuildTime = DateTime.Now, Count = 0, State = 0, UpdateTime = DateTime.Now, RoleId = 1, OrganizeId = 1, LevelId = 1, FolderUrl = "/FileSave/YUN/" + nickName, LoginTime = DateTime.Now, YunUsedSpace = 0, NickName = nickName, Status = 1 });
-                    if (regUser != null)
-                    {
-                        tree.Name = yunPath + nickName;//savePath通过配置文件读取
-                        bool res1 = CreateDirectory(tree);
-                        bool res2 = CacheHelper.Remove("RegCode");
-                        bool res3 = CacheHelper.Remove("EMail");
-                        //string url = HttpContext.Current.Request.Url.AbsoluteUri;//访问的url    
-                        //string webPath = HttpContext.Current.Request.Url.AbsolutePath;//访问的网页文件路径
-                        //string host = url.Substring(0, url.IndexOf(webPath));//获取域名
-                        //string savePath =host+ "/FileSave/Yun/" + userName;
-                        if (res1 && res2 && res3)
-                        {
-                            regUser.State = 1;
-                            this.UserService.Update(regUser);
-                            return JsonNetResult(ResultStatus.Success);
-                        }
-                    }
-                }
-                else
-                {
-                    return JsonNetResult(ResultStatus.ValidateCodeErr);
-                }
-            }
-            return JsonNetResult(ResultStatus.Fail);
-        }
-        #endregion
+        //    if (CacheHelper.Get("RegCode") != null)
+        //    {
+        //        if (string.Compare(CacheHelper.Get("RegCode").ToString(), code, true) == 0)//判断验证码是否正确(忽略大小写)
+        //        {
+        //            var regUser = this.UserService.Add(new UserModel() { EMail = email, Pwd = EncryptionHelper.GetMd5Str(pwd), UName = "", BuildTime = DateTime.Now, Count = 0, State = 0, UpdateTime = DateTime.Now, RoleId = 1, OrganizeId = 1, LevelId = 1, FolderUrl = "/FileSave/YUN/" + nickName, LoginTime = DateTime.Now, YunUsedSpace = 0, NickName = nickName, Status = 1 });
+        //            if (regUser != null)
+        //            {
+        //                tree.Name = yunPath + nickName;//savePath通过配置文件读取
+        //                bool res1 = CreateDirectory(tree);
+        //                bool res2 = CacheHelper.Remove("RegCode");
+        //                bool res3 = CacheHelper.Remove("EMail");
+        //                //string url = HttpContext.Current.Request.Url.AbsoluteUri;//访问的url    
+        //                //string webPath = HttpContext.Current.Request.Url.AbsolutePath;//访问的网页文件路径
+        //                //string host = url.Substring(0, url.IndexOf(webPath));//获取域名
+        //                //string savePath =host+ "/FileSave/Yun/" + userName;
+        //                if (res1 && res2 && res3)
+        //                {
+        //                    regUser.State = 1;
+        //                    this.UserService.Update(regUser);
+        //                    return JsonNetResult(ResultStatus.Success);
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return JsonNetResult(ResultStatus.ValidateCodeErr);
+        //        }
+        //    }
+        //    return JsonNetResult(ResultStatus.Fail);
+        //}
+        //#endregion
 
         #region 找回密码
         /// <summary>
@@ -317,271 +307,271 @@ namespace API.Controllers
                 return JsonNetResult(ResultStatus.Success, userInfo);
             return JsonNetResult(ResultStatus.Fail);
         }
-
-        /// <summary>
-        /// 用户上传同步文件
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public JsonNetResult UploadSynchroFile()
-        {
-            HttpContextBase context = (HttpContextBase)Request.Properties["MS_HttpContext"];//获取传统context
-            HttpRequestBase request = context.Request;//定义传统request对象
-            string nickName = request.Params.Get("nickName");
-            string version = request.Params.Get("version");
-            if (nickName == null || nickName == "")
-            {
-                return JsonNetResult(ResultStatus.Fail);
-            }
-            if (request.Files.Count > 0)
-            {
-                string suffix = Path.GetExtension(request.Files[0].FileName);//后缀名
-                string fileName = request.Files[0].FileName;//文件名
-                int size = request.Files[0].ContentLength;
-                var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
-                if (user == null)//判断用户是否存在
-                {
-                    return JsonNetResult(ResultStatus.Fail);
-                }
-                //string userTempFolder = user.FolderUrl + "/Synchro";
-                var fileOldModel = this.UserUpFileAdminService.GetList(t => t.FileName == fileName && t.State > 0 && t.Type == 1 && t.Status == 1).FirstOrDefault();
-
-                string userTempFolder = user.FolderUrl + "/Synchro";
-                //如果该用户的云盘文件夹以外丢失则创建
-                string fileAbsolutePath = yunPath + user.NickName + "\\" + "Synchro";
-                if (!Directory.Exists(fileAbsolutePath))
-                {
-                    DirectoryInfo d = Directory.CreateDirectory(fileAbsolutePath);
-                }
-                string fileRelativePath = userTempFolder + "/" + fileName;
-                fileAbsolutePath = fileAbsolutePath + "\\" + fileName;
-                try
-                {
-                    request.Files[0].SaveAs(fileAbsolutePath);
-                    if (fileOldModel == null)
-                    {
-                        user.UserUpFileModels.Add(new UserUpFileModel() { FileName = fileName, Size = size, State = 1, Status = 1, Type = 2, DownloadUrl = fileRelativePath, OldUrl = fileRelativePath, BuildTime = DateTime.Now, UpdateTime = DateTime.Now, Version = version });
-                        if (this.UserService.Update(user) > 0)
-                            return JsonNetResult(ResultStatus.Success);
-                        return JsonNetResult(ResultStatus.Fail);
-                    }
-                    else
-                    {
-                        int res = this.UserUpFileAdminService.GetUpdate(t => t.Id == fileOldModel.Id, t => new UserUpFileModel() { Size = size, UpdateTime = DateTime.Now, Version = version });
-                        if (res > 0)
-                            return JsonNetResult(ResultStatus.Success);
-                        return JsonNetResult(ResultStatus.Fail);
-                    }
-                }
-                catch (Exception e)
-                {
-                    return JsonNetResult(ResultStatus.UploadErr);
-                }
-            }
-            return JsonNetResult(ResultStatus.Fail);
-        }
-
-
-        /// <summary>
-        /// 获取用户上传的模型
-        /// </summary>
-        /// <param name="nickName">用户昵称</param>
-        /// <returns></returns>
-        [HttpGet]
-        public JsonNetResult GetSynchroFile(string nickName)
-        {
-            if (!RegularHelper.IsLetter(nickName))
-            {
-                return JsonNetResult(ResultStatus.NameErr);
-            }
-            ICollection<UserUpFileModel> userUpFiles = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).Select(t => t.UserUpFileModels).FirstOrDefault();
-            var userUpModel = userUpFiles.Where(t => t.Status == 1 && t.State == 1 && t.Type == 2).Select(t => new { t.FileName, t.OldUrl, t.Version }).FirstOrDefault();
-
-            if (userUpModel != null)
-                return JsonNetResult(ResultStatus.Success, userUpModel);
-            return JsonNetResult(ResultStatus.Fail);
-        }
-
-
-        /// <summary>
-        /// 上传T功能资源文件(图片、视频、文字压缩包)
-        /// </summary>
-        /// <returns></returns>
-        public JsonNetResult UploadTSourceFile()
-        {
-            HttpContextBase context = (HttpContextBase)Request.Properties["MS_HttpContext"];//获取传统context
-            HttpRequestBase request = context.Request;//定义传统request对象
-            string nickName = request.Params.Get("nickName");
-            //string version = request.Params.Get("version");
-            if (nickName == null || nickName == "")
-            {
-                return JsonNetResult(ResultStatus.Fail);
-            }
-            if (request.Files.Count > 0)
-            {
-                string suffix = Path.GetExtension(request.Files[0].FileName);//后缀名
-                string fileName = request.Files[0].FileName;//文件名
-                int size = request.Files[0].ContentLength;
-                var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
-                if (user == null)//判断用户是否存在
-                {
-                    return JsonNetResult(ResultStatus.Fail);
-                }
-                var fileOldModel = this.UserUpFileAdminService.GetList(t => t.FileName == fileName && t.State > 0 && t.Type == 0 && t.Status == 1).FirstOrDefault();
-
-                string userTempFolder = user.FolderUrl + "/FuncT/Resource/";
-                //如果该用户的云盘文件夹以外丢失则创建
-                string fileAbsolutePath = yunPath + user.NickName + "\\FuncT\\Resource\\";
-                if (!Directory.Exists(fileAbsolutePath))
-                {
-                    DirectoryInfo d = Directory.CreateDirectory(fileAbsolutePath);
-                }
-                string fileRelativePath = userTempFolder + fileName;
-                fileAbsolutePath = fileAbsolutePath + fileName;
-                try
-                {
-                    request.Files[0].SaveAs(fileAbsolutePath);
-                    if (fileOldModel == null)
-                    {
-                        user.UserUpFileModels.Add(new UserUpFileModel() { FileName = fileName, Size = size, State = 1, Status = 1, Type = 0, DownloadUrl = fileRelativePath, OldUrl = fileRelativePath, BuildTime = DateTime.Now, UpdateTime = DateTime.Now });
-                        if (this.UserService.Update(user) > 0)
-                            return JsonNetResult(ResultStatus.Success);
-                        return JsonNetResult(ResultStatus.Fail);
-                    }
-                    else
-                    {
-                        int res = this.UserUpFileAdminService.GetUpdate(t => t.Id == fileOldModel.Id, t => new UserUpFileModel() { Size = size, UpdateTime = DateTime.Now });
-                        if (res > 0)
-                            return JsonNetResult(ResultStatus.Success);
-                        return JsonNetResult(ResultStatus.Fail);
-                    }
-                }
-                catch (Exception e)
-                {
-                    return JsonNetResult(ResultStatus.UploadErr);
-                }
-            }
-            return JsonNetResult(ResultStatus.Fail);
-        }
-
-        /// <summary>
-        /// 获取T功能资源文件
-        /// </summary>
-        /// <param name="nickName">昵称</param>
-        /// <returns></returns>
-        public JsonNetResult GetTSourceFile(string nickName)
-        {
-            if (!RegularHelper.IsLetter(nickName))
-            {
-                return JsonNetResult(ResultStatus.NameErr);
-            }
-            var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
-            if (user == null)
-            {
-                return JsonNetResult(ResultStatus.UserNoExist);
-            }
-            if (user.UserUpFileModels == null)
-            {
-                return JsonNetResult(ResultStatus.Fail);
-            }
-            var userUpfile = user.UserUpFileModels.Where(t => t.State >0 && t.Type == 0 && t.Status == 1).Select(t => new { t.FileName, t.DownloadUrl }).FirstOrDefault();
-            if (userUpfile != null)
-                return JsonNetResult(ResultStatus.Success, userUpfile);
-            return JsonNetResult(ResultStatus.Fail);
-        }
-
-
-
-        /// <summary>
-        /// 上传T功能待审核文件
-        /// </summary>
-        /// <returns></returns>
-        public JsonNetResult UploadTAuditFile()
-        {
-            HttpContextBase context = (HttpContextBase)Request.Properties["MS_HttpContext"];//获取传统context
-            HttpRequestBase request = context.Request;//定义传统request对象
-            string nickName = request.Params.Get("nickName");
-            //string version = request.Params.Get("version");
-            if (nickName == null || nickName == "")
-            {
-                return JsonNetResult(ResultStatus.Fail);
-            }
-            if (request.Files.Count > 0)
-            {
-                string suffix = Path.GetExtension(request.Files[0].FileName);//后缀名
-                string fileName = request.Files[0].FileName;//文件名
-                int size = request.Files[0].ContentLength;
-                var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
-                if (user == null)//判断用户是否存在
-                {
-                    return JsonNetResult(ResultStatus.Fail);
-                }
-                var fileOldModel = this.UserUpFileAdminService.GetList(t => t.FileName == fileName && t.State > 0 && t.Type == 1 && t.Status == 1).FirstOrDefault();
-
-                string userTempFolder = user.FolderUrl + "/FuncT/Audit/Pend/";
-                //如果该用户的云盘文件夹以外丢失则创建
-                string fileAbsolutePath = yunPath + user.NickName + "\\FuncT\\Audit\\Pend\\";
-                if (!Directory.Exists(fileAbsolutePath))
-                {
-                    DirectoryInfo d = Directory.CreateDirectory(fileAbsolutePath);
-                }
-                string fileRelativePath = userTempFolder + fileName;
-                fileAbsolutePath = fileAbsolutePath + fileName;
-                string downLodUrl = user.FolderUrl + "/FuncT/Audit/Pend/" + fileName;
-                try
-                {
-                    request.Files[0].SaveAs(fileAbsolutePath);
-                    if (fileOldModel == null)
-                    {
-                        user.UserUpFileModels.Add(new UserUpFileModel() { FileName = fileName, Size = size, State = 1, Status = 1, Type = 1, DownloadUrl = downLodUrl, OldUrl = fileRelativePath, BuildTime = DateTime.Now, UpdateTime = DateTime.Now });
-                        if (this.UserService.Update(user) > 0)
-                            return JsonNetResult(ResultStatus.Success);
-                        return JsonNetResult(ResultStatus.Fail);
-                    }
-                    else
-                    {
-                        int res = this.UserUpFileAdminService.GetUpdate(t => t.Id == fileOldModel.Id, t => new UserUpFileModel() { Size = size, UpdateTime = DateTime.Now });
-                        if (res > 0)
-                            return JsonNetResult(ResultStatus.Success);
-                        return JsonNetResult(ResultStatus.Fail);
-                    }
-                }
-                catch (Exception e)
-                {
-                    return JsonNetResult(ResultStatus.UploadErr);
-                }
-            }
-            return JsonNetResult(ResultStatus.Fail);
-        }
-
-        /// <summary>
-        /// 获取审核过的文件
-        /// </summary>
-        /// <param name="nickName"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public JsonNetResult GetTAuditFile(string nickName)
-        {
-            if (!RegularHelper.IsLetter(nickName))
-            {
-                return JsonNetResult(ResultStatus.NameErr);
-            }
-            var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
-            if (user == null)
-            {
-                return JsonNetResult(ResultStatus.UserNoExist);
-            }
-            if (user.UserUpFileModels == null)
-            {
-                return JsonNetResult(ResultStatus.Fail);
-            }
-            var userUpfile = user.UserUpFileModels.Where(t => t.State == 1 && t.Type == 1 && t.Status == 1).Select(t => new { t.FileName, t.DownloadUrl }).FirstOrDefault();
-            if (userUpfile != null)
-                return JsonNetResult(ResultStatus.Success, userUpfile);
-            return JsonNetResult(ResultStatus.Fail);
-        }
         #endregion
-        #endregion
+        ///// <summary>
+        ///// 用户上传同步文件
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public JsonNetResult UploadSynchroFile()
+        //{
+        //    HttpContextBase context = (HttpContextBase)Request.Properties["MS_HttpContext"];//获取传统context
+        //    HttpRequestBase request = context.Request;//定义传统request对象
+        //    string nickName = request.Params.Get("nickName");
+        //    string version = request.Params.Get("version");
+        //    if (nickName == null || nickName == "")
+        //    {
+        //        return JsonNetResult(ResultStatus.Fail);
+        //    }
+        //    if (request.Files.Count > 0)
+        //    {
+        //        string suffix = Path.GetExtension(request.Files[0].FileName);//后缀名
+        //        string fileName = request.Files[0].FileName;//文件名
+        //        int size = request.Files[0].ContentLength;
+        //        var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
+        //        if (user == null)//判断用户是否存在
+        //        {
+        //            return JsonNetResult(ResultStatus.Fail);
+        //        }
+        //        //string userTempFolder = user.FolderUrl + "/Synchro";
+        //        var fileOldModel = this.RoleService.GetList(t => t.FileName == fileName && t.State > 0 && t.Type == 1 && t.Status == 1).FirstOrDefault();
+
+        //        string userTempFolder = user.FolderUrl + "/Synchro";
+        //        //如果该用户的云盘文件夹以外丢失则创建
+        //        string fileAbsolutePath = yunPath + user.NickName + "\\" + "Synchro";
+        //        if (!Directory.Exists(fileAbsolutePath))
+        //        {
+        //            DirectoryInfo d = Directory.CreateDirectory(fileAbsolutePath);
+        //        }
+        //        string fileRelativePath = userTempFolder + "/" + fileName;
+        //        fileAbsolutePath = fileAbsolutePath + "\\" + fileName;
+        //        try
+        //        {
+        //            request.Files[0].SaveAs(fileAbsolutePath);
+        //            if (fileOldModel == null)
+        //            {
+        //                user.UserUpFileModels.Add(new UserUpFileModel() { FileName = fileName, Size = size, State = 1, Status = 1, Type = 2, DownloadUrl = fileRelativePath, OldUrl = fileRelativePath, BuildTime = DateTime.Now, UpdateTime = DateTime.Now, Version = version });
+        //                if (this.UserService.Update(user) > 0)
+        //                    return JsonNetResult(ResultStatus.Success);
+        //                return JsonNetResult(ResultStatus.Fail);
+        //            }
+        //            else
+        //            {
+        //                int res = this.RoleService.GetUpdate(t => t.Id == fileOldModel.Id, t => new UserUpFileModel() { Size = size, UpdateTime = DateTime.Now, Version = version });
+        //                if (res > 0)
+        //                    return JsonNetResult(ResultStatus.Success);
+        //                return JsonNetResult(ResultStatus.Fail);
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return JsonNetResult(ResultStatus.UploadErr);
+        //        }
+        //    }
+        //    return JsonNetResult(ResultStatus.Fail);
+        //}
+
+
+        ///// <summary>
+        ///// 获取用户上传的模型
+        ///// </summary>
+        ///// <param name="nickName">用户昵称</param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public JsonNetResult GetSynchroFile(string nickName)
+        //{
+        //    if (!RegularHelper.IsLetter(nickName))
+        //    {
+        //        return JsonNetResult(ResultStatus.NameErr);
+        //    }
+        //    ICollection<UserUpFileModel> userUpFiles = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).Select(t => t.UserUpFileModels).FirstOrDefault();
+        //    var userUpModel = userUpFiles.Where(t => t.Status == 1 && t.State == 1 && t.Type == 2).Select(t => new { t.FileName, t.OldUrl, t.Version }).FirstOrDefault();
+
+        //    if (userUpModel != null)
+        //        return JsonNetResult(ResultStatus.Success, userUpModel);
+        //    return JsonNetResult(ResultStatus.Fail);
+        //}
+
+
+        ///// <summary>
+        ///// 上传T功能资源文件(图片、视频、文字压缩包)
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonNetResult UploadTSourceFile()
+        //{
+        //    HttpContextBase context = (HttpContextBase)Request.Properties["MS_HttpContext"];//获取传统context
+        //    HttpRequestBase request = context.Request;//定义传统request对象
+        //    string nickName = request.Params.Get("nickName");
+        //    //string version = request.Params.Get("version");
+        //    if (nickName == null || nickName == "")
+        //    {
+        //        return JsonNetResult(ResultStatus.Fail);
+        //    }
+        //    if (request.Files.Count > 0)
+        //    {
+        //        string suffix = Path.GetExtension(request.Files[0].FileName);//后缀名
+        //        string fileName = request.Files[0].FileName;//文件名
+        //        int size = request.Files[0].ContentLength;
+        //        var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
+        //        if (user == null)//判断用户是否存在
+        //        {
+        //            return JsonNetResult(ResultStatus.Fail);
+        //        }
+        //        var fileOldModel = this.RoleService.GetList(t => t.FileName == fileName && t.State > 0 && t.Type == 0 && t.Status == 1).FirstOrDefault();
+
+        //        string userTempFolder = user.FolderUrl + "/FuncT/Resource/";
+        //        //如果该用户的云盘文件夹以外丢失则创建
+        //        string fileAbsolutePath = yunPath + user.NickName + "\\FuncT\\Resource\\";
+        //        if (!Directory.Exists(fileAbsolutePath))
+        //        {
+        //            DirectoryInfo d = Directory.CreateDirectory(fileAbsolutePath);
+        //        }
+        //        string fileRelativePath = userTempFolder + fileName;
+        //        fileAbsolutePath = fileAbsolutePath + fileName;
+        //        try
+        //        {
+        //            request.Files[0].SaveAs(fileAbsolutePath);
+        //            if (fileOldModel == null)
+        //            {
+        //                user.UserUpFileModels.Add(new UserUpFileModel() { FileName = fileName, Size = size, State = 1, Status = 1, Type = 0, DownloadUrl = fileRelativePath, OldUrl = fileRelativePath, BuildTime = DateTime.Now, UpdateTime = DateTime.Now });
+        //                if (this.UserService.Update(user) > 0)
+        //                    return JsonNetResult(ResultStatus.Success);
+        //                return JsonNetResult(ResultStatus.Fail);
+        //            }
+        //            else
+        //            {
+        //                int res = this.RoleService.GetUpdate(t => t.Id == fileOldModel.Id, t => new UserUpFileModel() { Size = size, UpdateTime = DateTime.Now });
+        //                if (res > 0)
+        //                    return JsonNetResult(ResultStatus.Success);
+        //                return JsonNetResult(ResultStatus.Fail);
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return JsonNetResult(ResultStatus.UploadErr);
+        //        }
+        //    }
+        //    return JsonNetResult(ResultStatus.Fail);
+        //}
+
+        ///// <summary>
+        ///// 获取T功能资源文件
+        ///// </summary>
+        ///// <param name="nickName">昵称</param>
+        ///// <returns></returns>
+        //public JsonNetResult GetTSourceFile(string nickName)
+        //{
+        //    if (!RegularHelper.IsLetter(nickName))
+        //    {
+        //        return JsonNetResult(ResultStatus.NameErr);
+        //    }
+        //    var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
+        //    if (user == null)
+        //    {
+        //        return JsonNetResult(ResultStatus.UserNoExist);
+        //    }
+        //    if (user.UserUpFileModels == null)
+        //    {
+        //        return JsonNetResult(ResultStatus.Fail);
+        //    }
+        //    var userUpfile = user.UserUpFileModels.Where(t => t.State >0 && t.Type == 0 && t.Status == 1).Select(t => new { t.FileName, t.DownloadUrl }).FirstOrDefault();
+        //    if (userUpfile != null)
+        //        return JsonNetResult(ResultStatus.Success, userUpfile);
+        //    return JsonNetResult(ResultStatus.Fail);
+        //}
+
+
+
+        ///// <summary>
+        ///// 上传T功能待审核文件
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonNetResult UploadTAuditFile()
+        //{
+        //    HttpContextBase context = (HttpContextBase)Request.Properties["MS_HttpContext"];//获取传统context
+        //    HttpRequestBase request = context.Request;//定义传统request对象
+        //    string nickName = request.Params.Get("nickName");
+        //    //string version = request.Params.Get("version");
+        //    if (nickName == null || nickName == "")
+        //    {
+        //        return JsonNetResult(ResultStatus.Fail);
+        //    }
+        //    if (request.Files.Count > 0)
+        //    {
+        //        string suffix = Path.GetExtension(request.Files[0].FileName);//后缀名
+        //        string fileName = request.Files[0].FileName;//文件名
+        //        int size = request.Files[0].ContentLength;
+        //        var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
+        //        if (user == null)//判断用户是否存在
+        //        {
+        //            return JsonNetResult(ResultStatus.Fail);
+        //        }
+        //        var fileOldModel = this.RoleService.GetList(t => t.FileName == fileName && t.State > 0 && t.Type == 1 && t.Status == 1).FirstOrDefault();
+
+        //        string userTempFolder = user.FolderUrl + "/FuncT/Audit/Pend/";
+        //        //如果该用户的云盘文件夹以外丢失则创建
+        //        string fileAbsolutePath = yunPath + user.NickName + "\\FuncT\\Audit\\Pend\\";
+        //        if (!Directory.Exists(fileAbsolutePath))
+        //        {
+        //            DirectoryInfo d = Directory.CreateDirectory(fileAbsolutePath);
+        //        }
+        //        string fileRelativePath = userTempFolder + fileName;
+        //        fileAbsolutePath = fileAbsolutePath + fileName;
+        //        string downLodUrl = user.FolderUrl + "/FuncT/Audit/Pend/" + fileName;
+        //        try
+        //        {
+        //            request.Files[0].SaveAs(fileAbsolutePath);
+        //            if (fileOldModel == null)
+        //            {
+        //                user.UserUpFileModels.Add(new UserUpFileModel() { FileName = fileName, Size = size, State = 1, Status = 1, Type = 1, DownloadUrl = downLodUrl, OldUrl = fileRelativePath, BuildTime = DateTime.Now, UpdateTime = DateTime.Now });
+        //                if (this.UserService.Update(user) > 0)
+        //                    return JsonNetResult(ResultStatus.Success);
+        //                return JsonNetResult(ResultStatus.Fail);
+        //            }
+        //            else
+        //            {
+        //                int res = this.RoleService.GetUpdate(t => t.Id == fileOldModel.Id, t => new UserUpFileModel() { Size = size, UpdateTime = DateTime.Now });
+        //                if (res > 0)
+        //                    return JsonNetResult(ResultStatus.Success);
+        //                return JsonNetResult(ResultStatus.Fail);
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return JsonNetResult(ResultStatus.UploadErr);
+        //        }
+        //    }
+        //    return JsonNetResult(ResultStatus.Fail);
+        //}
+
+        ///// <summary>
+        ///// 获取审核过的文件
+        ///// </summary>
+        ///// <param name="nickName"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public JsonNetResult GetTAuditFile(string nickName)
+        //{
+        //    if (!RegularHelper.IsLetter(nickName))
+        //    {
+        //        return JsonNetResult(ResultStatus.NameErr);
+        //    }
+        //    var user = this.UserService.GetList(t => t.NickName == nickName && t.State == 1).FirstOrDefault();
+        //    if (user == null)
+        //    {
+        //        return JsonNetResult(ResultStatus.UserNoExist);
+        //    }
+        //    if (user.UserUpFileModels == null)
+        //    {
+        //        return JsonNetResult(ResultStatus.Fail);
+        //    }
+        //    var userUpfile = user.UserUpFileModels.Where(t => t.State == 1 && t.Type == 1 && t.Status == 1).Select(t => new { t.FileName, t.DownloadUrl }).FirstOrDefault();
+        //    if (userUpfile != null)
+        //        return JsonNetResult(ResultStatus.Success, userUpfile);
+        //    return JsonNetResult(ResultStatus.Fail);
+        //}
+        //#endregion
+        //#endregion
 
         #region 公共方法
         /// <summary>
@@ -620,8 +610,8 @@ namespace API.Controllers
         {
             MailHelper mail = new MailHelper();
             mail.MailServer = "smtp.qq.com";
-            mail.MailboxName = "2872845261@qq.com";
-            mail.MailboxPassword = "obxxsfowztbideee";//开启QQ邮箱POP3/SMTP服务时给的授权码
+            mail.MailboxName = "444503829@qq.com";
+            mail.MailboxPassword = "xtdphklmrdczcaji";//开启QQ邮箱POP3/SMTP服务时给的授权码
             //操作打开QQ邮箱->在账号下方点击"设置"->账户->POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务
             //obxxsfowztbideee为2872845261@qq的授权码
             mail.MailName = mailName;
@@ -643,3 +633,5 @@ namespace API.Controllers
         public List<FolderTree> Children { get; set; }
     }
 }
+        #endregion 
+        #endregion
