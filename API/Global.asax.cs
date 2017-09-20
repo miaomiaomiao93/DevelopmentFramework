@@ -22,8 +22,7 @@ namespace API
     {
         protected void Application_Start()
         {
-            log4net.Config.XmlConfigurator.Configure();//读取Log4Net配置信息
-
+            
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -45,6 +44,7 @@ namespace API
 
             //MiniProfilerEF6.Initialize();//注册MiniProfiler，网页性能插件
 
+            log4net.Config.XmlConfigurator.Configure();//读取Log4Net配置信息
 
             //WaitCallback
             ThreadPool.QueueUserWorkItem((a) =>

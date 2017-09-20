@@ -54,16 +54,6 @@
              <param name="email"></param>
              <returns></returns>
         </member>
-        <member name="M:API.Controllers.ValuesController.RegUser(System.String,System.String,System.String,System.String)">
-            <summary>
-            用户注册并创建文件夹
-            </summary>
-            <param name="userName"></param>
-            <param name="email"></param>
-            <param name="code"></param>
-            <param name="pwd"></param>
-            <returns></returns>
-        </member>
         <member name="M:API.Controllers.ValuesController.GetPwdBackCode(System.String)">
             <summary>
             用户找回密码发送验证码
@@ -92,45 +82,6 @@
             获取用户信息
             </summary>
             <param name="userName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:API.Controllers.ValuesController.UploadSynchroFile">
-            <summary>
-            用户上传同步文件
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:API.Controllers.ValuesController.GetSynchroFile(System.String)">
-            <summary>
-            获取用户上传的模型
-            </summary>
-            <param name="nickName">用户昵称</param>
-            <returns></returns>
-        </member>
-        <member name="M:API.Controllers.ValuesController.UploadTSourceFile">
-            <summary>
-            上传T功能资源文件(图片、视频、文字压缩包)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:API.Controllers.ValuesController.GetTSourceFile(System.String)">
-            <summary>
-            获取T功能资源文件
-            </summary>
-            <param name="nickName">昵称</param>
-            <returns></returns>
-        </member>
-        <member name="M:API.Controllers.ValuesController.UploadTAuditFile">
-            <summary>
-            上传T功能待审核文件
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:API.Controllers.ValuesController.GetTAuditFile(System.String)">
-            <summary>
-            获取审核过的文件
-            </summary>
-            <param name="nickName"></param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.ValuesController.CreateDirectory(API.Controllers.FolderTree)">
