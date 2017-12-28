@@ -14,7 +14,7 @@ namespace Common
         /// <summary>
         /// XML序列化与反序列化类
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">类</typeparam>
         public class Reader<T>
         {
             /// <summary>

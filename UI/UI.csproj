@@ -39,11 +39,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\..\..\..\..\..\File\EF快速开发框架Autofac\EF快速开发框架Autofac\UI\Libs\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\..\..\..\..\..\File\EF快速开发框架Autofac\EF快速开发框架Autofac\UI\Libs\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -69,10 +71,13 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -161,79 +166,51 @@
     <Compile Include="Services\MyExceptionAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Admin\style\admin_FileManage.css" />
-    <Content Include="Content\Common\style\btn.css" />
-    <Content Include="Content\Common\style\init.css" />
-    <Content Include="Content\Common\style\loading.css" />
-    <Content Include="Content\Admin\style\admin_Login.css" />
-    <Content Include="Content\Admin\style\admin_ModelManage.css" />
-    <Content Include="Content\Admin\style\admin_PageBar.css" />
-    <Content Include="Content\Admin\style\admin_TreeView.css" />
-    <Content Include="Content\Admin\style\admin_Upload.css" />
-    <Content Include="Content\Admin\style\admin_UserManage.css" />
-    <Content Include="Content\Admin\style\admin_Layout.css" />
+    <Content Include="Bin\Antlr3.Runtime.dll" />
+    <Content Include="Bin\Autofac.Configuration.dll" />
+    <Content Include="Bin\Autofac.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bin\Common.dll" />
+    <Content Include="Bin\Dal.dll" />
+    <Content Include="Bin\EntityFramework.dll" />
+    <Content Include="Bin\EntityFramework.Extended.dll" />
+    <Content Include="Bin\EntityFramework.SqlServer.dll" />
+    <Content Include="Bin\IDal.dll" />
+    <Content Include="Bin\IService.dll" />
+    <Content Include="Bin\log4net.dll" />
+    <Content Include="Bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="Bin\Microsoft.Web.Mvc.FixedDisplayModes.dll" />
+    <Content Include="Bin\Model.dll" />
+    <Content Include="Bin\Newtonsoft.Json.dll" />
+    <Content Include="Bin\Service.dll" />
+    <Content Include="Bin\Session.dll" />
+    <Content Include="Bin\System.Net.Http.Formatting.dll" />
+    <Content Include="Bin\System.Web.Http.dll" />
+    <Content Include="Bin\System.Web.Http.WebHost.dll" />
+    <Content Include="Bin\System.Web.Mvc.dll" />
+    <Content Include="Bin\System.Web.Optimization.dll" />
+    <Content Include="Bin\System.Web.Providers.dll" />
+    <Content Include="Bin\System.Web.Razor.dll" />
+    <Content Include="Bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="Bin\System.Web.WebPages.dll" />
+    <Content Include="Bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="Bin\WebGrease.dll" />
     <Content Include="Content\Plugs\Cropper\cropper.css" />
     <Content Include="Content\Plugs\Cropper\cropper.js" />
     <Content Include="Content\Plugs\Cropper\docs.css" />
     <Content Include="Content\Plugs\Cropper\docs.js" />
     <Content Include="Content\Plugs\Cropper\jquery.min.js" />
-    <Content Include="Content\Web\script\web_TreeView.js" />
-    <Content Include="Content\Web\script\web_VM_UserDetail_DownloadHistory.js" />
-    <Content Include="Content\Web\script\web_VM_UserDetail_MyCollection.js" />
-    <Content Include="Content\Web\script\web_VM_UserDetail_UserInfo.js" />
-    <Content Include="Content\Web\script\web_VM_UserDetail_AccountLevel.js" />
-    <Content Include="Content\Web\script\web_VM_ShoppingMall.js" />
-    <Content Include="Content\Web\style\web_AccountLevel.css" />
-    <Content Include="Content\Web\style\web_DownloadHistory.css" />
-    <Content Include="Content\Web\style\web_MyCollection.css" />
-    <Content Include="Content\Web\style\web_PageBar.css" />
-    <Content Include="Content\Web\style\web_TreeView.css" />
-    <Content Include="Content\Web\style\web_UserDetail.css" />
-    <Content Include="Content\Admin\script\admin_M_FileManage.js" />
-    <Content Include="Content\Admin\script\admin_M_ModelManage.js" />
-    <Content Include="Content\Admin\script\admin_M_UserManage.js" />
-    <Content Include="Content\Admin\script\admin_TEP_FileManage.js" />
-    <Content Include="Content\Admin\script\admin_TEP_Login.js" />
-    <Content Include="Content\Admin\script\admin_TEP_ModelManage.js" />
-    <Content Include="Content\Admin\script\admin_TEP_UserManage.js" />
-    <Content Include="Content\Admin\script\admin_VM_FileManage.js" />
-    <Content Include="Content\Admin\script\admin_VM_ModelManage.js" />
-    <Content Include="Content\Admin\script\admin_VM_UserManage.js" />
     <Content Include="Content\Plugs\Canvas\canvasBg.js" />
-    <Content Include="Content\Common\script\Common.js" />
-    <Content Include="Content\Admin\script\admin_M_Login.js" />
-    <Content Include="Content\Admin\script\admin_PageBar.js" />
-    <Content Include="Content\Admin\script\admin_TreeView.js" />
-    <Content Include="Content\Admin\script\admin_VM_Login.js" />
-    <Content Include="Content\Web\style\web_DownLoad.css" />
-    <Content Include="Content\Web\style\web_Layout.css" />
-    <Content Include="Content\Web\style\web_ShoppingMall.css" />
-    <Content Include="Content\Web\script\web_PageBar.js" />
-    <Content Include="Content\Web\script\web_M_DownLod.js" />
     <Content Include="Areas\Web\Views\Shared\_Layout.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Areas\Web\Views\Web.config" />
-    <Content Include="Content\Web\style\downLoad.css" />
-    <Content Include="Content\Web\style\layout.css" />
     <Content Include="Content\Plugs\Ali-Font\iconfont.css" />
     <Content Include="Content\Plugs\Ali-Font\iconfont.js" />
     <Content Include="Content\Plugs\Ali-Font\iconfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Areas\Admin\Views\Web.config" />
-    <Content Include="Imgs\cft.png" />
-    <Content Include="Imgs\cft2.png" />
-    <Content Include="Imgs\collect.png" />
-    <Content Include="Content\Web\script\web_M_Layout.js" />
-    <Content Include="Content\Web\script\web_VM_DownLod.js" />
-    <Content Include="Content\Web\script\web_VM_Layout.js" />
-    <Content Include="Imgs\admin.png" />
-    <Content Include="Imgs\dhao.png" />
-    <Content Include="Imgs\goBack.png" />
-    <Content Include="Imgs\wbk2.png" />
-    <Content Include="Imgs\password.png" />
-    <Content Include="Imgs\validateCode.png" />
     <Content Include="Content\Plugs\WebUploader\expressInstall.swf" />
     <Content Include="Content\Plugs\WebUploader\icons.png" />
     <Content Include="Content\Plugs\WebUploader\image.png" />
@@ -257,38 +234,6 @@
     <None Include="Properties\PublishProfiles\32FSDF.pubxml" />
     <None Include="Properties\PublishProfiles\sss.pubxml" />
     <None Include="Properties\PublishProfiles\啊啊啊.pubxml" />
-    <Content Include="Imgs\6.jpg" />
-    <Content Include="Imgs\noCollect.jpg" />
-    <Content Include="Imgs\nav\down1.png" />
-    <Content Include="Imgs\nav\down2.png" />
-    <Content Include="Imgs\nav\home1.png" />
-    <Content Include="Imgs\nav\home2.png" />
-    <Content Include="Imgs\nav\left1.png" />
-    <Content Include="Imgs\nav\left2.png" />
-    <Content Include="Imgs\search2.jpg" />
-    <Content Include="Imgs\search1.jpg" />
-    <Content Include="Imgs\top.png" />
-    <Content Include="Imgs\bottom.png" />
-    <Content Include="Imgs\head.jpg" />
-    <Content Include="Imgs\yhjb-xz.png" />
-    <Content Include="Imgs\zfb.png" />
-    <Content Include="Imgs\zfb2.png" />
-    <Content Include="Imgs\未标题-9_0000_图层-15.png" />
-    <Content Include="Imgs\未标题-9_0001_图层-14.png" />
-    <Content Include="Imgs\未标题-9_0002_图层-13.png" />
-    <Content Include="Imgs\未标题-9_0003_图层-12.png" />
-    <Content Include="Imgs\未标题-9_0004_图层-11.png" />
-    <Content Include="Imgs\未标题-9_0005_图层-10.png" />
-    <Content Include="Imgs\未标题-9_0006_图层-9.png" />
-    <Content Include="Imgs\未标题-9_0007_图层-8.png" />
-    <Content Include="Imgs\未标题-9_0008_图层-7.png" />
-    <Content Include="Imgs\未标题-9_0009_图层-6.png" />
-    <Content Include="Imgs\未标题-9_0010_图层-5.png" />
-    <Content Include="Imgs\未标题-9_0011_图层-4.png" />
-    <Content Include="Imgs\未标题-9_0012_图层-3.png" />
-    <Content Include="Imgs\未标题-9_0013_图层-2.png" />
-    <Content Include="Imgs\未标题-9_0014_图层-1.png" />
-    <Content Include="Imgs\未标题-9_0015_背景.png" />
     <Content Include="Libs\Common.Logging.dll" />
     <Content Include="Libs\log4net.dll" />
     <Content Include="Libs\Spring.Core.dll" />
@@ -333,6 +278,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Web\Models\" />
     <Folder Include="FileSave\" />
+    <Folder Include="Imgs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

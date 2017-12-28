@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Autofac.Integration.Mvc;
 using log4net;
 using UI;
 using System;
@@ -16,6 +15,7 @@ using UI.Services;
 using Model;
 using System.Data.Entity;
 using Common;
+using Autofac.Integration.Mvc;
 
 namespace UI
 {
