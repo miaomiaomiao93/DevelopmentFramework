@@ -236,9 +236,6 @@ C:\Users\hihi_zh\Desktop\BVM\Session\bin\Debug\zh-Hans\EntityFramework.resources
 C:\Users\hihi_zh\Desktop\BVM\Session\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 C:\Users\hihi_zh\Desktop\BVM\Session\obj\Debug\Session.dll
 C:\Users\hihi_zh\Desktop\BVM\Session\obj\Debug\Session.pdb
-G:\Git\DevelopmentFramework\Session\obj\Debug\Session.csprojResolveAssemblyReference.cache
-G:\Git\DevelopmentFramework\Session\obj\Debug\Session.dll
-G:\Git\DevelopmentFramework\Session\obj\Debug\Session.pdb
 G:\Git\DevelopmentFramework\Session\bin\Debug\Session.dll.config
 G:\Git\DevelopmentFramework\Session\bin\Debug\Session.dll
 G:\Git\DevelopmentFramework\Session\bin\Debug\Session.pdb
@@ -258,3 +255,6 @@ G:\Git\DevelopmentFramework\Session\bin\Debug\Model.pdb
 G:\Git\DevelopmentFramework\Session\bin\Debug\EntityFramework.Extended.xml
 G:\Git\DevelopmentFramework\Session\bin\Debug\zh-Hans\EntityFramework.resources.dll
 G:\Git\DevelopmentFramework\Session\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\Git\DevelopmentFramework\Session\obj\Debug\Session.csprojResolveAssemblyReference.cache
+G:\Git\DevelopmentFramework\Session\obj\Debug\Session.dll
+G:\Git\DevelopmentFramework\Session\obj\Debug\Session.pdb

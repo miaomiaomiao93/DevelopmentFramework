@@ -20,8 +20,6 @@ namespace API
             //    <add name="Access-Control-Allow-Methods" value="GET, POST, PUT, DELETE,OPTIONS" />
             //  </customHeaders>
             //</httpProtocol>
-   
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi2",
                 routeTemplate: "api/{controller}/{action}/{id}",

@@ -162,4 +162,3 @@ G:\Git\DevelopmentFramework\Common\bin\Debug\zh-Hans\EntityFramework.resources.d
 G:\Git\DevelopmentFramework\Common\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 G:\Git\DevelopmentFramework\Common\obj\Debug\Common.dll
 G:\Git\DevelopmentFramework\Common\obj\Debug\Common.pdb
-G:\Git\DevelopmentFramework\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
