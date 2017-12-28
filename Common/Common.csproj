@@ -68,10 +68,7 @@
     <Compile Include="RegularHelper.cs" />
     <Compile Include="ResultStatus.cs" />
     <Compile Include="SqlHelper.cs" />
-<<<<<<< HEAD
     <Compile Include="SqlMsdnHelper.cs" />
-=======
->>>>>>> 64bf224d5ec19b079706de915d38bb9d3edc2ae9
     <Compile Include="VerifyCode.cs" />
     <Compile Include="XMLConfigHelper.cs" />
   </ItemGroup>
