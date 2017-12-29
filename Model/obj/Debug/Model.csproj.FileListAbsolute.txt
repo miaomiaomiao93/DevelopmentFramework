@@ -79,3 +79,4 @@ G:\Git\DevelopmentFramework\Model\bin\Debug\zh-Hans\EntityFramework.resources.dl
 G:\Git\DevelopmentFramework\Model\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 G:\Git\DevelopmentFramework\Model\obj\Debug\Model.dll
 G:\Git\DevelopmentFramework\Model\obj\Debug\Model.pdb
+G:\Git\DevelopmentFramework\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

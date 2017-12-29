@@ -16,3 +16,19 @@ d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\IService\bin\
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\IService\bin\Release\EntityFramework.Extended.dll
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\IService\bin\Release\Dal.pdb
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\IService\bin\Release\EntityFramework.Extended.xml
+G:\Git\DevelopmentFramework\IService\bin\Release\IService.dll
+G:\Git\DevelopmentFramework\IService\bin\Release\IService.pdb
+G:\Git\DevelopmentFramework\IService\bin\Release\Dal.dll
+G:\Git\DevelopmentFramework\IService\bin\Release\IDal.dll
+G:\Git\DevelopmentFramework\IService\bin\Release\Model.dll
+G:\Git\DevelopmentFramework\IService\bin\Release\EntityFramework.dll
+G:\Git\DevelopmentFramework\IService\bin\Release\EntityFramework.Extended.dll
+G:\Git\DevelopmentFramework\IService\bin\Release\Dal.pdb
+G:\Git\DevelopmentFramework\IService\bin\Release\IDal.pdb
+G:\Git\DevelopmentFramework\IService\bin\Release\Model.pdb
+G:\Git\DevelopmentFramework\IService\bin\Release\EntityFramework.xml
+G:\Git\DevelopmentFramework\IService\bin\Release\EntityFramework.Extended.xml
+G:\Git\DevelopmentFramework\IService\bin\Release\zh-Hans\EntityFramework.resources.dll
+G:\Git\DevelopmentFramework\IService\obj\Release\IService.csprojResolveAssemblyReference.cache
+G:\Git\DevelopmentFramework\IService\obj\Release\IService.dll
+G:\Git\DevelopmentFramework\IService\obj\Release\IService.pdb

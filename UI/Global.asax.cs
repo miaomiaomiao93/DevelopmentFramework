@@ -16,6 +16,8 @@ using Model;
 using System.Data.Entity;
 using Common;
 using Autofac.Integration.Mvc;
+using IService;
+using Service;
 
 namespace UI
 {
@@ -45,6 +47,19 @@ namespace UI
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             #endregion
 
+            #region 添加初始数据
+            DbContext db = new MyContext();
+            if (db.Database.CreateIfNotExists())
+            {
+                IUserAdminService userService = new UserAdminService();
+                List<UserModel> userList = new List<UserModel>()
+                {
+                    new UserModel(){BuildTime=DateTime.Now,Count=0,EMail="aaa",HeadPicUrl="aaa",LoginTime=DateTime.Now,NickName="aaa",Pwd="aaaa",State=1,TelNumber="155555555",UName="aaaa",UpdateTime=DateTime.Now},
+                    new UserModel(){BuildTime=DateTime.Now,Count=0,EMail="aaa",HeadPicUrl="aaa",LoginTime=DateTime.Now,NickName="aaa",Pwd="aaaa",State=1,TelNumber="155555555",UName="aaaa",UpdateTime=DateTime.Now},                    
+                };
+                userService.AddRange(userList);
+            }
+            #endregion
             //log4net.Config.XmlConfigurator.Configure();//读取Log4Net配置信息
 
             //MiniProfilerEF6.Initialize();//注册MiniProfiler，网页性能插件

@@ -22,3 +22,25 @@ d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Session\bin\R
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Session\bin\Release\EntityFramework.Extended.xml
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Session\bin\Release\Newtonsoft.Json.dll
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Session\bin\Release\Newtonsoft.Json.xml
+G:\Git\DevelopmentFramework\Session\bin\Release\Session.dll.config
+G:\Git\DevelopmentFramework\Session\bin\Release\Session.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\Session.pdb
+G:\Git\DevelopmentFramework\Session\bin\Release\Autofac.Configuration.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\Autofac.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\Dal.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\EntityFramework.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\EntityFramework.SqlServer.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\IDal.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\Model.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\EntityFramework.Extended.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\Dal.pdb
+G:\Git\DevelopmentFramework\Session\bin\Release\IDal.pdb
+G:\Git\DevelopmentFramework\Session\bin\Release\EntityFramework.xml
+G:\Git\DevelopmentFramework\Session\bin\Release\EntityFramework.SqlServer.xml
+G:\Git\DevelopmentFramework\Session\bin\Release\Model.pdb
+G:\Git\DevelopmentFramework\Session\bin\Release\EntityFramework.Extended.xml
+G:\Git\DevelopmentFramework\Session\bin\Release\zh-Hans\EntityFramework.resources.dll
+G:\Git\DevelopmentFramework\Session\bin\Release\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\Git\DevelopmentFramework\Session\obj\Release\Session.csprojResolveAssemblyReference.cache
+G:\Git\DevelopmentFramework\Session\obj\Release\Session.dll
+G:\Git\DevelopmentFramework\Session\obj\Release\Session.pdb

@@ -151,7 +151,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthorityController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Web\Controllers\HomeController.cs" />
     <Compile Include="Areas\Web\WebAreaRegistration.cs">
       <SubType>Code</SubType>
@@ -163,6 +166,7 @@
     </Compile>
     <Compile Include="Models\PagingResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AuthenticationAttribute.cs" />
     <Compile Include="Services\MyExceptionAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,8 +230,8 @@
     <Content Include="Content\Plugs\Ali-Font\iconfont.woff" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Areas\Web\Views\Home\Index.cshtml" />
-    <None Include="Properties\PublishProfiles\111.pubxml" />
     <None Include="Properties\PublishProfiles\11111.pubxml" />
+    <None Include="Properties\PublishProfiles\222222222.pubxml" />
     <None Include="Properties\PublishProfiles\2323.pubxml" />
     <None Include="Properties\PublishProfiles\23dsf.pubxml" />
     <None Include="Properties\PublishProfiles\23swdf.pubxml" />
@@ -281,7 +285,9 @@
     <Folder Include="Imgs\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
