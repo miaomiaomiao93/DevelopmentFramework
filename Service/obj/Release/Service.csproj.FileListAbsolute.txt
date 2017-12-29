@@ -23,3 +23,26 @@ d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Service\bin\R
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Service\bin\Release\EntityFramework.Extended.xml
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Service\bin\Release\Newtonsoft.Json.dll
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Service\bin\Release\Newtonsoft.Json.xml
+G:\Git\DevelopmentFramework\Service\bin\Release\Service.dll.config
+G:\Git\DevelopmentFramework\Service\bin\Release\Service.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\Service.pdb
+G:\Git\DevelopmentFramework\Service\bin\Release\Dal.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\IDal.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\IService.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\Model.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\Session.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\EntityFramework.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\EntityFramework.Extended.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\Autofac.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\Autofac.Configuration.dll
+G:\Git\DevelopmentFramework\Service\bin\Release\Dal.pdb
+G:\Git\DevelopmentFramework\Service\bin\Release\IDal.pdb
+G:\Git\DevelopmentFramework\Service\bin\Release\IService.pdb
+G:\Git\DevelopmentFramework\Service\bin\Release\Model.pdb
+G:\Git\DevelopmentFramework\Service\bin\Release\Session.pdb
+G:\Git\DevelopmentFramework\Service\bin\Release\EntityFramework.xml
+G:\Git\DevelopmentFramework\Service\bin\Release\EntityFramework.Extended.xml
+G:\Git\DevelopmentFramework\Service\bin\Release\zh-Hans\EntityFramework.resources.dll
+G:\Git\DevelopmentFramework\Service\obj\Release\Service.csprojResolveAssemblyReference.cache
+G:\Git\DevelopmentFramework\Service\obj\Release\Service.dll
+G:\Git\DevelopmentFramework\Service\obj\Release\Service.pdb

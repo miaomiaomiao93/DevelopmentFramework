@@ -19,3 +19,22 @@ d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Dal\obj\Relea
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Dal\obj\Release\Dal.pdb
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Dal\bin\Release\Newtonsoft.Json.dll
 d:\用户目录\我的文档\visual studio 2013\Projects\ModelMall\Dal\bin\Release\Newtonsoft.Json.xml
+G:\Git\DevelopmentFramework\Dal\bin\Release\Dal.dll.config
+G:\Git\DevelopmentFramework\Dal\bin\Release\Dal.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\Dal.pdb
+G:\Git\DevelopmentFramework\Dal\bin\Release\EntityFramework.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\EntityFramework.Extended.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\EntityFramework.Extensions.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\EntityFramework.SqlServer.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\IDal.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\Model.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\IDal.pdb
+G:\Git\DevelopmentFramework\Dal\bin\Release\Model.pdb
+G:\Git\DevelopmentFramework\Dal\bin\Release\EntityFramework.xml
+G:\Git\DevelopmentFramework\Dal\bin\Release\EntityFramework.Extended.xml
+G:\Git\DevelopmentFramework\Dal\bin\Release\EntityFramework.SqlServer.xml
+G:\Git\DevelopmentFramework\Dal\bin\Release\zh-Hans\EntityFramework.resources.dll
+G:\Git\DevelopmentFramework\Dal\bin\Release\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\Git\DevelopmentFramework\Dal\obj\Release\Dal.csprojResolveAssemblyReference.cache
+G:\Git\DevelopmentFramework\Dal\obj\Release\Dal.dll
+G:\Git\DevelopmentFramework\Dal\obj\Release\Dal.pdb

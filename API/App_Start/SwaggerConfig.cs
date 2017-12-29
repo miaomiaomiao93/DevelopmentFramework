@@ -4,6 +4,7 @@ using API;
 using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
+
 namespace API
 {
     public class SwaggerConfig

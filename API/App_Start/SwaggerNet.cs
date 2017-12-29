@@ -31,7 +31,7 @@ namespace API.App_Start
             try
             {
                 config.Services.Replace(typeof(IDocumentationProvider),
-                    new XmlCommentDocumentationProvider(HttpContext.Current.Server.MapPath("~/bin/SwaggerApiDemo.XML")));
+                    new XmlCommentDocumentationProvider(HttpContext.Current.Server.MapPath("~/bin/API.XML")));
             }
             catch (FileNotFoundException)
             {

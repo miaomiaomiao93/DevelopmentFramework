@@ -1,4 +1,3 @@
-G:\Git\DevelopmentFramework\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
 G:\Git\DevelopmentFramework\UI\bin\Bin\Autofac.dll
 G:\Git\DevelopmentFramework\UI\bin\UI.dll.config
 G:\Git\DevelopmentFramework\UI\bin\UI.dll
@@ -20,5 +19,6 @@ G:\Git\DevelopmentFramework\UI\bin\IDal.pdb
 G:\Git\DevelopmentFramework\UI\bin\Session.pdb
 G:\Git\DevelopmentFramework\UI\bin\Dal.pdb
 G:\Git\DevelopmentFramework\UI\bin\EntityFramework.Extended.xml
+G:\Git\DevelopmentFramework\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
 G:\Git\DevelopmentFramework\UI\obj\Debug\UI.dll
 G:\Git\DevelopmentFramework\UI\obj\Debug\UI.pdb
