@@ -9,13 +9,13 @@ using System.Xml.Serialization;
 
 namespace Common
 {
-    public class XMLConfigHelper
+    public class XMLConfigHelper<T>
     {
         /// <summary>
         /// XML序列化与反序列化类
         /// </summary>
         /// <typeparam name="T">类</typeparam>
-        public class Reader<T>
+        public class Reader
         {
             /// <summary>
             /// XML转对象
