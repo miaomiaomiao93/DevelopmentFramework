@@ -11,7 +11,24 @@
 </head>
 <body>
     <div>
-        你好啊
+        <img src="" alt="" />
+        
+        <button type="button" class="btn btn-large btn-block btn-danger" onclick="button()">button</button>
+        
     </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function button(){
+                $.ajax({
+                type: "Post",
+                url: "../../admin/login/getImgUrl",
+                data: "",
+                dataType: "Json",
+                success: function (data) {
+                    $("img").attr("src", data);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
