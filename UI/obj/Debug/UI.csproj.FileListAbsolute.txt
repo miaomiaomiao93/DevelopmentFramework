@@ -22,3 +22,4 @@ G:\Git\DevelopmentFramework\UI\bin\EntityFramework.Extended.xml
 G:\Git\DevelopmentFramework\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
 G:\Git\DevelopmentFramework\UI\obj\Debug\UI.dll
 G:\Git\DevelopmentFramework\UI\obj\Debug\UI.pdb
+G:\Git\DevelopmentFramework\UI\bin\ThoughtWorks.QRCode.dll

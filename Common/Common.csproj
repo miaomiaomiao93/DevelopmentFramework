@@ -39,8 +39,8 @@
     <Reference Include="log4net">
       <HintPath>..\..\BVM\UI\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -54,13 +54,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.QRCode, Version=1.0.4778.30637, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThoughtWorks.QRCode.1.1.0\lib\ThoughtWorks.QRCode.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheHelper.cs" />
+    <Compile Include="CreateQRCode.cs" />
     <Compile Include="DirectoryHelper.cs" />
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="HttpLoadFilesHelper.cs" />
     <Compile Include="ImgHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MailHelper.cs" />
@@ -71,6 +77,7 @@
     <Compile Include="SqlMsdnHelper.cs" />
     <Compile Include="VerifyCode.cs" />
     <Compile Include="XMLConfigHelper.cs" />
+    <Compile Include="ExcelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
